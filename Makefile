@@ -1,7 +1,7 @@
-GPU=0
+GPU=1
 CUDNN=0
 CUDNN_HALF=0
-OPENCV=0
+OPENCV=1
 AVX=0
 OPENMP=0
 LIBSO=0
@@ -54,7 +54,7 @@ endif
 
 CC=gcc
 CPP=g++
-NVCC=nvcc
+NVCC=/usr/local/cuda/bin/nvcc
 OPTS=-Ofast
 LDFLAGS= -lm -pthread
 COMMON= -Iinclude/ -I3rdparty/stb/include
@@ -76,8 +76,8 @@ CFLAGS+=$(OPTS)
 ifeq ($(OPENCV), 1)
 COMMON+= -DOPENCV
 CFLAGS+= -DOPENCV
-LDFLAGS+= `pkg-config --libs opencv`
-COMMON+= `pkg-config --cflags opencv`
+LDFLAGS+= `pkg-config --libs opencv4`
+COMMON+= `pkg-config --cflags opencv4`
 endif
 
 ifeq ($(OPENMP), 1)
